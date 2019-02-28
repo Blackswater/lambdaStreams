@@ -1,15 +1,14 @@
-import org.junit.BeforeClass;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.net.Inet4Address;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LambdaTest {
     Application app;
+
     @BeforeEach
     void setup() {
         app = new Application();
@@ -84,18 +83,18 @@ class LambdaTest {
     @Test
     void executeSQL10() {
         Map<Integer, Long> map = new HashMap<>();
-        map.put(1,257l);
-        map.put(11,252l);
-        map.put(6,255l);
-        map.put(5,263l);
-        map.put(12,231l);
-        map.put(9,255l);
-        map.put(2,270l);
-        map.put(4,254l);
-        map.put(7,248l);
-        map.put(8,257l);
-        map.put(3,230l);
-        map.put(10,244l);
+        map.put(1, 257l);
+        map.put(11, 252l);
+        map.put(6, 255l);
+        map.put(5, 263l);
+        map.put(12, 231l);
+        map.put(9, 255l);
+        map.put(2, 270l);
+        map.put(4, 254l);
+        map.put(7, 248l);
+        map.put(8, 257l);
+        map.put(3, 230l);
+        map.put(10, 244l);
         assertEquals(map, app.executeSQL10());
     }
 
@@ -130,10 +129,10 @@ class LambdaTest {
     @Test
     void executeSQL13() {
         Map<Integer, Integer> map = new HashMap<>();
-        map.put(1,18755);
-        map.put(3,18922);
-        map.put(6,18739);
-        map.put(5,19273);
+        map.put(1, 18755);
+        map.put(3, 18922);
+        map.put(6, 18739);
+        map.put(5, 19273);
         assertTrue(map.containsKey(1) == app.executeSQL13().containsKey(1));
         assertTrue(map.containsKey(3) == app.executeSQL13().containsKey(3));
         assertTrue(map.containsKey(6) == app.executeSQL13().containsKey(6));
@@ -148,8 +147,8 @@ class LambdaTest {
     @Test
     void executeSQL14() {
         Map<String, Double> map = new HashMap<>();
-        map.put("f",19.00019860644478 );
-        map.put("h",18.989878224974202 );
+        map.put("f", 19.00019860644478);
+        map.put("h", 18.989878224974202);
         assertTrue(map.containsKey("f") == app.executeSQL14().containsKey("f"));
         assertTrue(map.containsKey("h") == app.executeSQL14().containsKey("h"));
         assertTrue(map.containsValue(19.00019860644478) == app.executeSQL14().containsValue(19.00019860644478));

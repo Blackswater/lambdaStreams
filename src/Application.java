@@ -44,7 +44,7 @@ public class Application {
 
     // count, where, in
     public long executeSQL03() {
-        long count = records.stream().filter(x -> x.getSource().equals("a") || x.getSource().equals("c")).filter(x -> x.getDestination().equals("g")).filter(x ->  x.getType().equals("e")).filter(x ->  x.getCustoms().equals("y")).count();
+        long count = records.stream().filter(x -> x.getSource().equals("a") || x.getSource().equals("c")).filter(x -> x.getDestination().equals("g")).filter(x -> x.getType().equals("e")).filter(x -> x.getCustoms().equals("y")).count();
         System.out.println(count);
         return count;
     }
@@ -59,10 +59,10 @@ public class Application {
 
     // id, where, in, order by desc limit
     public List<Integer> executeSQL07() {
-        List<Integer> results = records.stream().filter(x -> x.getSource().equals("b") || x.getSource().equals("c")).filter(x-> x.getDestination().equals("g")).filter(x->x.getType().equals("n")).filter(x-> x.getSorter() <= 5)
-                .filter(x->x.getCustoms().equals("y")).filter(x-> x.getExtendedSecurityCheck().equals("y")).sorted(Comparator.comparing(Record::getWeight)
-                .reversed()).limit(3).map(Record::getId).collect(Collectors.toList());
-        System.out.println("SQL 07: " +results.toString());
+        List<Integer> results = records.stream().filter(x -> x.getSource().equals("b") || x.getSource().equals("c")).filter(x -> x.getDestination().equals("g")).filter(x -> x.getType().equals("n")).filter(x -> x.getSorter() <= 5)
+                .filter(x -> x.getCustoms().equals("y")).filter(x -> x.getExtendedSecurityCheck().equals("y")).sorted(Comparator.comparing(Record::getWeight)
+                        .reversed()).limit(3).map(Record::getId).collect(Collectors.toList());
+        System.out.println("SQL 07: " + results.toString());
         return results;
 
     }
@@ -70,18 +70,18 @@ public class Application {
     // id, where, in, order by desc, order by asc
     public List<Integer> executeSQL08() {
         List<Integer> results = records.stream().filter(x -> x.getSource().equals("a") || x.getSource().equals("d"))
-                .filter(x->x.getDestination().equals("f") || x.getDestination().equals("e")).filter(x->x.getType().equals("b"))
-                .filter(x->x.getWeight() >= 29).filter(x->x.getCustoms().equals("y")).filter(x->x.getExtendedSecurityCheck().equals("y"))
+                .filter(x -> x.getDestination().equals("f") || x.getDestination().equals("e")).filter(x -> x.getType().equals("b"))
+                .filter(x -> x.getWeight() >= 29).filter(x -> x.getCustoms().equals("y")).filter(x -> x.getExtendedSecurityCheck().equals("y"))
                 .sorted(Comparator.comparing(Record::getWeight).reversed().thenComparing(Record::getDestination))
                 .map(Record::getId).collect(Collectors.toList());
-        System.out.println("SQL 08: " +results.toString());
+        System.out.println("SQL 08: " + results.toString());
         return results;
     }
 
     // count, group by
     public Map<String, Long> executeSQL09() {
         Map<String, Long> result = records.stream().collect(Collectors.groupingBy(Record::getCustoms, Collectors.counting()));
-        System.out.println("SQL 09: " +result.toString());
+        System.out.println("SQL 09: " + result.toString());
         return result;
     }
 
@@ -96,8 +96,8 @@ public class Application {
 
     // count, where, in, group by
     public Map<String, Long> executeSQL11() {
-        Map<String, Long> result = records.stream().filter(x -> x.getSource().equals("c")).filter(x->x.getDestination().equals("f") || x.getDestination().equals("g")
-                || x.getDestination().equals("h")).filter(x-> x.getType().equals("n")).filter(x->x.getCustoms().equals("y")).filter(x->x.getExtendedSecurityCheck().equals("n"))
+        Map<String, Long> result = records.stream().filter(x -> x.getSource().equals("c")).filter(x -> x.getDestination().equals("f") || x.getDestination().equals("g")
+                || x.getDestination().equals("h")).filter(x -> x.getType().equals("n")).filter(x -> x.getCustoms().equals("y")).filter(x -> x.getExtendedSecurityCheck().equals("n"))
                 .collect(Collectors.groupingBy(Record::getDestination, Collectors.counting()));
         System.out.println("SQL 1: " + result);
         return result;
@@ -106,34 +106,34 @@ public class Application {
 
     // count, where, not in, group by
     public Map<String, Long> executeSQL12() {
-        Map<String, Long> result = records.stream().filter(x -> x.getSource().equals("a")).filter(x->x.getDestination().equals("f")).filter(x->!x.getType().equals("b") && !x.getType().equals("e"))
-                .filter(x->x.getCustoms().equals("n")).filter(x->x.getSorter() == 8).collect(Collectors.groupingBy(Record::getExtendedSecurityCheck, Collectors.counting()
-        ));
-        System.out.println("SQL 12: " +result);
+        Map<String, Long> result = records.stream().filter(x -> x.getSource().equals("a")).filter(x -> x.getDestination().equals("f")).filter(x -> !x.getType().equals("b") && !x.getType().equals("e"))
+                .filter(x -> x.getCustoms().equals("n")).filter(x -> x.getSorter() == 8).collect(Collectors.groupingBy(Record::getExtendedSecurityCheck, Collectors.counting()
+                ));
+        System.out.println("SQL 12: " + result);
         return result;
     }
 
     // sum, where, not in, in, group by
     public Map<Integer, Integer> executeSQL13() {
-        Map<Integer, Integer> result = records.stream().filter(x -> !x.getSource().equals("a") && !x.getSource().equals("c")).filter(x->x.getDestination().equals("h")).filter(x->x.getSorter() == 1 ||
-                x.getSorter() == 3 || x.getSorter() == 5 || x.getSorter() == 6).filter(x->x.getCustoms().equals("y")).filter(x->x.getExtendedSecurityCheck().equals("n"))
+        Map<Integer, Integer> result = records.stream().filter(x -> !x.getSource().equals("a") && !x.getSource().equals("c")).filter(x -> x.getDestination().equals("h")).filter(x -> x.getSorter() == 1 ||
+                x.getSorter() == 3 || x.getSorter() == 5 || x.getSorter() == 6).filter(x -> x.getCustoms().equals("y")).filter(x -> x.getExtendedSecurityCheck().equals("n"))
                 .collect(Collectors.groupingBy(Record::getSorter, Collectors.summingInt(Record::getWeight)));
-        System.out.println("SQL 13: "+result);
+        System.out.println("SQL 13: " + result);
         return result;
     }
 
     // avg, where, in, in, group by
     public Map<String, Double> executeSQL14() {
-        Map<String, Double> result = records.stream().filter(x -> x.getSource().equals("a") || x.getSource().equals("b")).filter(x-> x.getDestination().equals("f")
-                || x.getDestination().equals("h")).filter(x->x.getExtendedSecurityCheck().equals("n")).collect(Collectors.groupingBy(Record::getDestination, Collectors.averagingInt(Record::getWeight)));
-        System.out.println("SQL 14: " +result);
-        return  result;
+        Map<String, Double> result = records.stream().filter(x -> x.getSource().equals("a") || x.getSource().equals("b")).filter(x -> x.getDestination().equals("f")
+                || x.getDestination().equals("h")).filter(x -> x.getExtendedSecurityCheck().equals("n")).collect(Collectors.groupingBy(Record::getDestination, Collectors.averagingInt(Record::getWeight)));
+        System.out.println("SQL 14: " + result);
+        return result;
     }
 
     // sum, where, in
     public long executeSQL05() {
-        long sum = records.stream().filter(x -> x.getSource().equals("a") || x.getSource().equals("c")).filter(x-> x.getDestination().equals("f")
-                || x.getDestination().equals("h")).filter(x->x.getType().equals("e")).filter(x ->x.getCustoms().equals("n")).mapToInt(Record::getWeight).sum();
+        long sum = records.stream().filter(x -> x.getSource().equals("a") || x.getSource().equals("c")).filter(x -> x.getDestination().equals("f")
+                || x.getDestination().equals("h")).filter(x -> x.getType().equals("e")).filter(x -> x.getCustoms().equals("n")).mapToInt(Record::getWeight).sum();
         System.out.println("SQL 05: " + sum);
         return sum;
     }
@@ -142,7 +142,7 @@ public class Application {
     public OptionalDouble executeSQL06() {
         OptionalDouble avg = records.stream().filter(x -> x.getSource().equals("a") && !x.getDestination().equals("f") || !x.getDestination().equals("g")
                 && x.getType().equals("n") && x.getCustoms().equals("y")).mapToDouble(Record::getWeight).average();
-        System.out.println("SQL 06 : " +  avg);
+        System.out.println("SQL 06 : " + avg);
         return avg;
     }
 

@@ -55,12 +55,12 @@ public class Record {
 
     }
 
-        public String toString() {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(id).append(";").append(source).append(";").append(destination).append(";");
-            stringBuilder.append(type).append(";").append(weight).append(";").append(sorter).append(";");
-            stringBuilder.append(customs).append(";").append(extendedSecurityCheck);
-            return stringBuilder.toString();
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(id).append(";").append(source).append(";").append(destination).append(";");
+        stringBuilder.append(type).append(";").append(weight).append(";").append(sorter).append(";");
+        stringBuilder.append(customs).append(";").append(extendedSecurityCheck);
+        return stringBuilder.toString();
 
 
     }
