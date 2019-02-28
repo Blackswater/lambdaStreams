@@ -30,7 +30,7 @@ public class Application {
     // count
     public long executeSQL01() {
         long count = records.stream().count();
-        System.out.println("Count :" + count);
+        System.out.println("SQL 1: " + count);
         return count;
     }
 
@@ -38,14 +38,14 @@ public class Application {
     public long executeSQL02() {
         long count = records.stream().filter(x -> x.getSource().equals("a") && x.getDestination().equals("g")
                 && x.getType().equals("n") && x.getWeight() >= 20 && x.getSorter() <= 5).count();
-        System.out.println(count);
+        System.out.println("SQL 2: " +count);
         return count;
     }
 
     // count, where, in
     public long executeSQL03() {
         long count = records.stream().filter(x -> x.getSource().equals("a") || x.getSource().equals("c")).filter(x -> x.getDestination().equals("g")).filter(x -> x.getType().equals("e")).filter(x -> x.getCustoms().equals("y")).count();
-        System.out.println(count);
+        System.out.println("SQL 3: " +count);
         return count;
     }
 
@@ -53,7 +53,7 @@ public class Application {
     public long executeSQL04() {
         long count = records.stream().filter(x -> x.getSource().equals("b")).filter(x -> !x.getDestination().equals("f")
                 && !x.getDestination().equals("h")).filter(x -> x.getType().equals("n")).filter(x -> x.getCustoms().equals("n")).count();
-        System.out.println(count);
+        System.out.println("SQL 4: " + count);
         return count;
     }
 
@@ -99,7 +99,7 @@ public class Application {
         Map<String, Long> result = records.stream().filter(x -> x.getSource().equals("c")).filter(x -> x.getDestination().equals("f") || x.getDestination().equals("g")
                 || x.getDestination().equals("h")).filter(x -> x.getType().equals("n")).filter(x -> x.getCustoms().equals("y")).filter(x -> x.getExtendedSecurityCheck().equals("n"))
                 .collect(Collectors.groupingBy(Record::getDestination, Collectors.counting()));
-        System.out.println("SQL 1: " + result);
+        System.out.println("SQL 11: " + result);
         return result;
 
     }
